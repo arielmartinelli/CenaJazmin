@@ -1,0 +1,72 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #d4d4fc, #e0f7fa);
+  margin-bottom: 20px; 
+  padding: 20px;
+}
+
+.main-container {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 50%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1, h2, h3, h4 {
+  color: #2c2d80;
+}
+
+.option-img {
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.option-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+input, select {
+  font-size: 1rem;
+}
+
+/* Responsive para celulares */
+@media (max-width: 576px) {
+  body {
+    padding: 10px;
+  }
+
+  .main-container {
+    padding: 15px;
+  }
+
+  h1, h2, h3, h4 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .row > div {
+    margin-bottom: 20px;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+}

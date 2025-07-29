@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cena y Pelis</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <meta property="og:title" content="Receta fácil: Pollo al verdeo para tu cita perfecta 🍗❤️">
+  <meta property="og:image" content="https://via.placeholder.com/500x300.png?text=Pollo+al+Verdeo">
+  <meta property="og:description" content="¡Descubrí esta receta mágica para conquistar con comida y cine!">
+</head>
+
+<body onload="showWelcomeAlert()">
+  <!-- Página 1 -->
+
+  <div class="div" class="d-flex justify-content-center align-items-center min-vh-100">
+  </div>
+  <div id="page1" class="container text-center main-container">
+    <h1 class="text-center">¡Bienvenidos a nuestra noche de cita! 🍽️🎬</h1>
+    <p class="text-center">Organicemos la noche juntos.</p>
+    <hr />
+    <h3>1. Elegí la comida</h3>
+    <div class="row">
+      <div class="col-md-4">
+        <h4>Pollo al verdeo con pure</h4>
+        <img src="https://i0.wp.com/cocinasindelantal.com/wp-content/uploads/2022/07/wp-1657930735955.jpg?fit=1877%2C1920&ssl=1" class="option-img" onclick="selectFood('Pollo al verdeo con pure')">
+      </div>
+      <div class="col-md-4">
+        <h4>Sorrentinos con salsa de champi</h4>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLJODzWHHbusEWH1IaLk0AmlkPP_II7gXU9Ss37MbLzWTkZO-G_QMk86qiRYrDQc2KDBc&usqp=CAU" class="option-img" onclick="selectFood('Sorrentinos con salsa de champi')">
+      </div>
+      <div class="col-md-4">
+        <h4>Bife de chorizo con papas noise</h4>
+        <img src="https://img.elnueve.com.ar/sites/default/files/styles/16_9_max_304px/public/2024-12/WhatsApp%20Image%202024-12-11%20at%2015.43.11.jpeg?h=8abcec71&itok=_EMQ3L50" class="option-img" onclick="selectFood('Bife de chorizo con papas noise')">
+      </div>
+    </div>
+    <hr />
+    <h3>2. ¿Qué postre comemos?</h3>
+    <input type="text" id="postre" class="form-control mb-3" placeholder="Escribí el postre que quieras...">
+    <h3>3. Elegí la bebida</h3>
+    <select id="bebida" class="form-select">
+      <option value="Vino">Vino 🍷</option>
+      <option value="Cerveza">Cerveza 🍺</option>
+      <option value="Después vemos">Después vemos 🤷‍♂️</option>
+    </select>
+    <button class="btn btn-primary mt-4" onclick="goToPage(2)">Siguiente</button>
+  </div>
+  </div>
+
+
+
+  <!-- Página 2 -->
+
+  <div class="div" class="d-flex justify-content-center align-items-center min-vh-100">
+    <div id="page2" class="main-container hidden">
+    <h2>🎥 Reservar Película</h2>
+    <h4>¿Vamos a ver una peli o serie?</h4>
+    <select id="tipo" class="form-select">
+      <option value="Película">Película</option>
+      <option value="Serie">Serie</option>
+    </select>
+    <h4 class="mt-3">Género</h4>
+    <select id="genero" class="form-select">
+      <option>Acción</option>
+      <option>Comedia</option>
+      <option>Romance</option>
+      <option>Drama</option>
+      <option>Terror</option>
+    </select>
+    <h4 class="mt-3">¿Qué tenés en mente?</h4>
+    <input type="text" id="pelicula" class="form-control" placeholder="Nombre de la peli o serie...">
+    <button class="btn btn-primary mt-4" onclick="goToPage(3)">Siguiente</button>
+  </div>
+  </div>
+
+  
+
+  <!-- Página 3 -->
+  <div id="page3" class="main-container hidden">
+    <h2>📅 Reservar Fecha</h2>
+    <label for="fecha">Elegí el día de la cita:</label>
+    <input type="date" id="fecha" class="form-control mb-4">
+    <button class="btn btn-success" onclick="reservar()">Reservar por WhatsApp</button>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+
+  <script>
+
+    let comidaElegida = "";
+
+    function showWelcomeAlert() {
+      Swal.fire({
+        title: "¡Bienvenidos!",
+        text: "Esto es para organizar nuestra cena y pelis",
+        icon: "info",
+        confirmButtonText: "Empezar ❤️"
+      });
+    }
+
+    function selectFood(food) {
+      comidaElegida = food;
+      Swal.fire(`Elegiste ${food} como comida principal 🍽️`);
+    }
+
+    function goToPage(pageNumber) {
+      document.getElementById("page1").classList.add("hidden");
+      document.getElementById("page2").classList.add("hidden");
+      document.getElementById("page3").classList.add("hidden");
+      document.getElementById(`page${pageNumber}`).classList.remove("hidden");
+    }
+
+    function reservar() {
+      const postre = document.getElementById("postre").value;
+      const bebida = document.getElementById("bebida").value;
+      const tipo = document.getElementById("tipo").value;
+      const genero = document.getElementById("genero").value;
+      const peli = document.getElementById("pelicula").value;
+      const fecha = document.getElementById("fecha").value;
+
+      const mensaje = `Vamos a comer ${comidaElegida}, con el postre ${postre} y tomamos ${bebida}. Vamos a ver ${tipo} del género ${genero}: ${peli}. Fecha: ${fecha}`;
+
+      const whatsappURL = `https://wa.me/543516121498?text=${encodeURIComponent(mensaje)}`;
+      window.open(whatsappURL, '_blank');
+    }
+  </script>
+</body>
+
+</html>
